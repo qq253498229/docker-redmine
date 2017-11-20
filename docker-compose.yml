@@ -1,0 +1,20 @@
+version: '3'
+services:
+  redmine:
+    image: redmine
+    restart: always
+    ports:
+      - "8080:3000" # 8080端口是对外端口(可以修改)，3000端口不可修改
+    environment:
+      REDMINE_DB_MYSQL: db # 数据库服务名，对应11行的db:
+      REDMINE_DB_PASSWORD: example # 数据库密码
+  db:
+    image: mysql:5.7 # mysql镜像版本
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: example # 数据库初始密码
+      MYSQL_DATABASE: redmine # 数据库名，自动生成库
+      TZ: Asia/Shanghai # 时区(timezone)，防止美国时间
+    volumes:
+      - "./mysql/data:/var/lib/mysql" # ./mysql/data数据库在本地的存放位置(可以修改)
+      - "./mysql/conf:/etc/mysql/conf.d" # mysql配置文件，可自行修改
