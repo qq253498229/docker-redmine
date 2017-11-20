@@ -7,3 +7,7 @@
 #### 修改docker-compose.yml中的第19行
 
 > "./mysql/data:/var/lib/mysql" 其中./mysql/data是数据库的数据文件在本地的存放位置，可以修改成自己的位置
+
+#### 运行docker-compose up -d
+
+#### 访问http://localhost:8080
